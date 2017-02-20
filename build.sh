@@ -6,9 +6,10 @@ cd deps
 #Add necessary extra repos
 version=$(lsb_release -a 2>&1)
 if [[ $version == *"14.04"* ]] ; then
-    wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.5-18_amd64.deb
-    sudo dpkg -i cuda-repo-ubuntu1404_7.5-18_amd64.deb
-    rm cuda-repo-ubuntu1404_7.5-18_amd64.deb
+# Install cuda 8, rather than 7.5
+    wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+    sudo dpkg -i cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+    rm cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
     sudo add-apt-repository -y ppa:v-launchpad-jochen-sprickerhof-de/pcl
     sudo apt-get update
     sudo apt-get install -y libpcl-all
