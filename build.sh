@@ -3,28 +3,15 @@
 mkdir deps &> /dev/null
 cd deps
 
-#Add necessary extra repos
-version=$(lsb_release -a 2>&1)
-if [[ $version == *"14.04"* ]] ; then
-# Install cuda 8, rather than 7.5
-    wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
-    sudo dpkg -i cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
-    rm cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
-    sudo add-apt-repository -y ppa:v-launchpad-jochen-sprickerhof-de/pcl
-    sudo apt-get update
-    sudo apt-get install -y libpcl-all
-elif [[ $version == *"15.04"* ]] ; then
-    wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1504/x86_64/cuda-repo-ubuntu1504_7.5-18_amd64.deb
-    sudo dpkg -i cuda-repo-ubuntu1504_7.5-18_amd64.deb
-    rm cuda-repo-ubuntu1504_7.5-18_amd64.deb
-    sudo apt-get update
-    sudo apt-get install -y libpcl-dev yasm libvtk5-qt4-dev
-else
-    echo "Don't use this on anything except 14.04 or 15.04"
-    exit
-fi
+# CUDA 8, UBUNTU 14.04
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+rm cuda-repo-ubuntu1404_8.0.61-1_amd64.deb
+sudo add-apt-repository -y ppa:v-launchpad-jochen-sprickerhof-de/pcl
+sudo apt-get update
+sudo apt-get install -y libpcl-all
 
-sudo apt-get install -y cmake-qt-gui git build-essential libusb-1.0-0-dev libudev-dev openjdk-7-jdk freeglut3-dev python-vtk libvtk-java libglew-dev cuda-7-5 libsuitesparse-dev
+sudo apt-get install -y cmake-qt-gui git build-essential libusb-1.0-0-dev libudev-dev openjdk-7-jdk freeglut3-dev python-vtk libvtk-java libglew-dev cuda libsuitesparse-dev
 
 #Installing Pangolin
 git clone https://github.com/stevenlovegrove/Pangolin.git
